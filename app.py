@@ -89,9 +89,3 @@ ax[1].plot(garch_std_resid, label='GARCH Standardized Residuals')
 ax[1].set_title('GARCH Model Residuals')
 ax[1].legend()
 st.pyplot(fig)
-
-
-except Exception as e:
-        st.error(f"An error occurred: {e}")
-else:
-    st.info("Please enter all required inputs.")
