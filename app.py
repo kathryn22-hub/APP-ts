@@ -31,6 +31,11 @@ end_date = st.date_input('End Date', value=pd.to_datetime('today'))
 
 # Fetching data from yfinance
 data = yf.download(ticker, start=start_date, end=end_date)
+# Ensure data is not empty
+        if data.empty:
+            st.error("No data found for the provided ticker symbol and date range. Please check your inputs.")
+        else:
+            st.write("Data fetched successfully!")
 
 # Pre-processing
 if 'Date' in data.columns:
@@ -45,11 +50,23 @@ returns = 100 * market.pct_change().dropna()
 arch_model_fit = arch_model(returns, vol='ARCH').fit(disp='off')
 arch_forecast = arch_model_fit.forecast(horizon=forecast_horizon)
 arch_cond_vol = arch_forecast.variance.values[-1, :]
+arch_resid = arch_model_fit.resid
+arch_std_resid = arch_model_fit.std_resid
 
 # Fit GARCH model
 garch_model_fit = arch_model(returns, vol='Garch').fit(disp='off')
 garch_forecast = garch_model_fit.forecast(horizon=forecast_horizon)
 garch_cond_vol = garch_forecast.variance.values[-1, :]
+garch_resid = garch_model_fit.resid
+garch_std_resid = garch_model_fit.std_resid
+
+# Display results
+
+st.subheader('ARCH Model Summary')
+st.text(arch_model_fit.summary())
+
+st.subheader('GARCH Model Summary')
+st.text(garch_model_fit.summary())
 
 # Plotting the conditional volatility for both models
 fig, ax = plt.subplots()
@@ -59,11 +76,22 @@ ax.set_title('Conditional Volatility Forecast')
 ax.set_xlabel('Days')
 ax.set_ylabel('Volatility')
 ax.legend()
-
-# Display results
 st.pyplot(fig)
-st.subheader('ARCH Model Summary')
-st.text(arch_model_fit.summary())
+ # Plotting the forecast residuals for both models
+fig, ax = plt.subplots(2, 1, figsize=(10, 8))
+ax[0].plot(arch_resid, label='ARCH Residuals')
+ax[0].plot(arch_std_resid, label='ARCH Standardized Residuals')
+ax[0].set_title('ARCH Model Residuals')
+ax[0].legend()
 
-st.subheader('GARCH Model Summary')
-st.text(garch_model_fit.summary())
+ax[1].plot(garch_resid, label='GARCH Residuals')
+ax[1].plot(garch_std_resid, label='GARCH Standardized Residuals')
+ax[1].set_title('GARCH Model Residuals')
+ax[1].legend()
+st.pyplot(fig)
+
+
+except Exception as e:
+        st.error(f"An error occurred: {e}")
+else:
+    st.info("Please enter all required inputs.")
