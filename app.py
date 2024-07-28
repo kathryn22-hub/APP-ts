@@ -5,7 +5,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 from arch import arch_model
 
-st.title('Stock Price Time Series Forecasting')
+# Streamlit app title
+st.title('Stock Price Forecasting using ARCH/GARCH Model ')
+
+st.set_page_config(layout="wide")
+st.markdown(
+    "<h1 style='text-align: center;'>Stock Price Forecaster(ARCH/GARCH Model) by <a href='https://github.com/kathryn22'Kathryn Shaju</a></h1>",
+    unsafe_allow_html=True
+)
+st.markdown(
+    """
+    <p align="center">
+      <a href="https://github.com/DenverCoder1/readme-typing-svg">
+        <img src="https://readme-typing-svg.herokuapp.com?font=Time+New+Roman&color=yellow&size=30&center=true&vCenter=true&width=600&height=100&lines=Stock+Forecasts+Made+Simple!;ARCH/GARCH_analyser-1.0;" alt="Typing SVG">
+      </a>
+    </p>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # User inputs for stock ticker symbol, forecast horizon, start date, and end date
 ticker = st.text_input('Enter Stock Ticker Symbol', 'AAPL')
