@@ -31,11 +31,6 @@ end_date = st.date_input('End Date', value=pd.to_datetime('today'))
 
 # Fetching data from yfinance
 data = yf.download(ticker, start=start_date, end=end_date)
-# Ensure data is not empty
-        if data.empty:
-            st.error("No data found for the provided ticker symbol and date range. Please check your inputs.")
-        else:
-            st.write("Data fetched successfully!")
 
 # Pre-processing
 if 'Date' in data.columns:
