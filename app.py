@@ -8,14 +8,14 @@ from arch import arch_model
 # Streamlit app title
 st.set_page_config(layout="wide")
 st.markdown(
-    "<h1 style='text-align: center;'>Stock Price Forecaster(ARCH/GARCH Model) by <a href='https://github.com/kathryn22'Kathryn Shaju></a></h1>",
+    "<h1 style='text-align: center;'>Stock Price Forecaster (ARCH/GARCH MODEL) by <a href='https://github.com/kathryn22'>Kathryn Shaju</a></h1>",
     unsafe_allow_html=True
 )
 st.markdown(
     """
     <p align="center">
       <a href="https://github.com/DenverCoder1/readme-typing-svg">
-        <img src="https://readme-typing-svg.herokuapp.com?font=Time+New+Roman&color=yellow&size=30&center=true&vCenter=true&width=600&height=100&lines=Stock+Forecasts+Made+Simple!;ARCH/GARCH_analyser-1.0;" alt="Typing SVG">
+        <img src="https://readme-typing-svg.herokuapp.com?font=Time+New+Roman&color=yellow&size=30&center=true&vCenter=true&width=600&height=100&lines=Stock+Forecasts+Made+Simple!;ARCH/GARCH Model_analyser-1.0;" alt="Typing SVG">
       </a>
     </p>
     """,
