@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 from arch import arch_model
 
 # Streamlit app title
-st.title('Stock Price Forecasting using ARCH/GARCH Model ')
-
 st.set_page_config(layout="wide")
 st.markdown(
     "<h1 style='text-align: center;'>Stock Price Forecaster(ARCH/GARCH Model) by <a href='https://github.com/kathryn22'Kathryn Shaju</a></h1>",
